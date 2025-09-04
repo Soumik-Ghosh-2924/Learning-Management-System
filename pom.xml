@@ -13,21 +13,32 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>course-api-data</name>
 	<description>Course Api with data for Spring Boot QuickStart Java Brains Course</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
+
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection>https://github.com/Soumik-Ghosh-2924/Learning-Management-System</connection>
+		<developerConnection>https://github.com/Soumik-Ghosh-2924</developerConnection>
+		<url>https://github.com/Soumik-Ghosh-2924/Learning-Management-System</url>
+		<tag>HEAD</tag>
 	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub OWNER Maven Releases</name>
+			<url>https://maven.pkg.github.com/Soumik-Ghosh-2924/Learning-Management-System</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>github</id>
+			<name>GitHub OWNER Maven Snapshots</name>
+			<url>https://maven.pkg.github.com/Soumik-Ghosh-2924/Learning-Management-System</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<properties>
 		<java.version>17</java.version>
+		<log4j2.version>2.24.3</log4j2.version>
+		<postgresql.version>42.7.4</postgresql.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,7 +59,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.7.4</version><!--$NO-MVN-MAN-VER$-->
+			<version>${postgresql.version}</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		
 		<dependency>
@@ -56,6 +67,26 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
+		<!-- optional: log4j-to-slf4j if you need SLF4J bridge -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-to-slf4j</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
