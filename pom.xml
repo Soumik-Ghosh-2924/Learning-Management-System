@@ -24,16 +24,17 @@
 	<distributionManagement>
 		<repository>
 			<id>github</id>
-			<name>GitHub OWNER Maven Releases</name>
+			<name>GitHub Soumik-Ghosh-2924 Maven Releases</name>
 			<url>https://maven.pkg.github.com/Soumik-Ghosh-2924/Learning-Management-System</url>
 		</repository>
 
 		<snapshotRepository>
 			<id>github</id>
-			<name>GitHub OWNER Maven Snapshots</name>
+			<name>GitHub Soumik-Ghosh-2924 Maven Snapshots</name>
 			<url>https://maven.pkg.github.com/Soumik-Ghosh-2924/Learning-Management-System</url>
 		</snapshotRepository>
 	</distributionManagement>
+
 
 	<properties>
 		<java.version>17</java.version>
