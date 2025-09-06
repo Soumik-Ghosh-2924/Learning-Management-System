@@ -4,34 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CourseService 
 {
+	private static final Logger logger = LoggerFactory.getLogger(CourseService.class);
+
 	@Autowired
 	private CourseRepository courseRepository;
 	
 	
 	//to get all the topics 
-	public List<Course> getAllCourses(String topicId)
+	public List<Optional<Course>> getAllCourses(String topicId)
 	{
-		List<Course> courses = new ArrayList<>();
-		for(Course course : courseRepository.findByTopicId(topicId))
-		{
-			courses.add(course);
-		}
-		return courses;
+		logger.info("Fetching courses from the database : ");
+		List<Optional<Course>> courses = new ArrayList<>();
+        try {
+            for(Optional<Course> course : courseRepository.findByTopicId(topicId))
+            {
+                courses.add(course);
+            }
+        } catch (Exception e) {
+			throw new RuntimeException(e);
+        }
+        return courses;
 	}
 	
 	
 	
 	
 	//to get a specific topic
-	public Optional<Course> getCourse(String id)
+	public ResponseEntity<Optional<Course>> getCourseIdWithinTopic(String topicId, String id)
 	{
-		return (Optional<Course>)courseRepository.findById(id); 
+        return ResponseEntity.ok(courseRepository.findByTopicIdAndId(topicId, id));
 	}
 	
 	
