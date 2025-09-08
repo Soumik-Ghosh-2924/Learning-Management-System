@@ -3,7 +3,6 @@ package io.javabrains.springbootstarter.courses;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +16,19 @@ public class CourseService
 
 	@Autowired
 	private CourseRepository courseRepository;
-	
-	
-	//to get all the topics 
+
 	public List<Optional<Course>> getAllCourses(String topicId)
 	{
 		logger.info("Fetching courses from the database : ");
 		List<Optional<Course>> courses = new ArrayList<>();
         try {
-            for(Optional<Course> course : courseRepository.findByTopicId(topicId))
-            {
+            for(Optional<Course> course : courseRepository.findByTopicId(topicId)) {
                 courses.add(course);
             }
+			return courses;
         } catch (Exception e) {
 			throw new RuntimeException(e);
         }
-        return courses;
 	}
 	
 	
