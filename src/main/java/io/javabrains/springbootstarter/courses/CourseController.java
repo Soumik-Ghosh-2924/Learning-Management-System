@@ -62,11 +62,6 @@ public class CourseController
 	{
 		logger.info("Adding a new course to the specific topic ...");
 		if(course==null){
-			logger.warn("Here's what was passed for the course payload that was in an attempt towards it's addition : "+
-					"Course Id : "+course.getId()+"\n"+
-					"Course Name : "+course.getName()+"\n"+
-					"Course Description : "+course.getDescription()+"\n"+
-					"Course's Parent Topic  : "+course.getTopic());
 			return ResponseEntity
 					.badRequest()
 					.body(new StringBuilder("Course Payload is required and it can't be empty."));
