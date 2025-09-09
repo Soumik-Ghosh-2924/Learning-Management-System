@@ -19,7 +19,7 @@ public class CourseService
 
 	public List<Optional<Course>> getAllCourses(String topicId)
 	{
-		logger.info("Fetching courses from the database : ");
+		logger.info("Fetching courses from the database for topicId : {}", topicId);
 		List<Optional<Course>> courses = new ArrayList<>();
         try {
             for(Optional<Course> course : courseRepository.findByTopicId(topicId)) {
@@ -30,30 +30,19 @@ public class CourseService
 			throw new RuntimeException(e);
         }
 	}
-	
-	
-	
-	
+
 	//to get a specific topic
-	public ResponseEntity<Optional<Course>> getCourseIdWithinTopic(String topicId, String id)
+	public Optional<Course>getCourseIdWithinTopic(String topicId, String id)
 	{
-        return ResponseEntity.ok(courseRepository.findByTopicIdAndId(topicId, id));
+        return courseRepository.findByTopicIdAndId(topicId, id);
 	}
-	
-	
-	
-	
-	
+
 	//to add a specific topic to the database
 	public void addCourse(Course course)
 	{
 		courseRepository.save(course);
 	}
-	
-	
-	
-	
-	
+
 	//to update the topic in the dB:
 	public void updateCourse(Course course, String id)
 	{
@@ -65,18 +54,13 @@ public class CourseService
 				courseRepository.save(course);
 			}
 		}
-		
-		return;
 	}
-	
-	
-	
-	
-	
-	//to delete the topic from the repository
-	public void deleteCourse(String id)
-	{
-		courseRepository.deleteById(id);
-	}	
 
+	//to delete the topic from the repository
+	public void deleteCourse(boolean exist,String topicId, String id)
+	{
+		if(exist) {
+			courseRepository.deleteById(id);
+		}
+	}
 }
